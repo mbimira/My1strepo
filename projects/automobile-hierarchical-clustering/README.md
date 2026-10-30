@@ -17,6 +17,19 @@ Can automobile models be grouped into interpretable segments based on their tech
 | [Dataset](mtcars.csv) | 32 automobile observations and 11 numeric variables |
 | [Dependencies](requirements.txt) | Python packages needed to run the analysis |
 
+## Visual results
+
+The charts below are saved in the repository and are also embedded as outputs in the notebook, so visitors can inspect the results without running Python.
+
+| Visualization | What it shows |
+|---|---|
+| [Ward dendrogram](charts/dendrogram.svg) | Hierarchical merge structure across all 32 models |
+| [Cluster-count comparison](charts/cluster-comparison.svg) | Silhouette scores for Average and Ward linkage across k = 2–7 |
+| [Cluster profile heatmap](charts/cluster-heatmap.svg) | Relative feature patterns across the three selected groups |
+| [PCA cluster map](charts/pca-clusters.svg) | Two-dimensional projection showing the three Ward clusters |
+
+**Selected result:** Ward linkage with three clusters produces a silhouette score of **0.416** and cluster sizes of **15, 12, and 5**. The first two principal components explain **84.2%** of the standardized feature variance.
+
 ## Methodology
 1. **Inspect the data** — review dimensions, data types, missing values, duplicates, and descriptive statistics.
 2. **Prepare features** — exclude the vehicle identifier and standardize the 11 numeric variables.
