@@ -1,42 +1,58 @@
 # Automobile Segmentation with Hierarchical Clustering
 
-## Project overview
-This project uses unsupervised machine learning to group 32 automobile models using 11 numeric vehicle characteristics from the classic `mtcars` dataset.
+> **Unsupervised machine learning | Python | 32 automobile models | 11 numeric features**
 
-The notebook demonstrates:
-- Data inspection and quality checks
-- Feature selection and standardization
-- Average-linkage and Ward hierarchical clustering
-- Dendrogram visualization
-- Silhouette-score comparison for candidate cluster counts
-- Cluster profiling and PCA visualization
-- Findings, limitations, and recommended next steps
+## Executive summary
+This project explores whether automobiles can be grouped into meaningful segments using fuel economy, engine, transmission, gearing, and vehicle characteristics. I built a reproducible hierarchical-clustering workflow, compared Average and Ward linkage, evaluated candidate cluster counts with silhouette scores, profiled the resulting groups, and visualized the data with PCA.
 
-## Main analytical question
-Can automobile models be grouped into interpretable segments based on fuel economy, engine, transmission, gearing, and vehicle characteristics?
+**The worked solution uses Ward linkage with three clusters**, selected as a practical balance of separation, cluster size, and interpretability—not as a claim that three clusters are the only mathematically optimal answer.
 
-## Repository contents
-- `Automobile_Hierarchical_Clustering.ipynb` — complete analysis notebook
-- `requirements.txt` — Python dependencies
-- `mtcars.csv` — required input dataset (not included in this upload)
+## Business question
+Can automobile models be grouped into interpretable segments based on their technical specifications, and what characteristics distinguish those groups?
 
-## Run the notebook
-1. Download the `mtcars` dataset as a CSV with a `model` column and the 11 numeric feature columns.
-2. Save the file as `mtcars.csv` in this same folder.
-3. Install dependencies:
+## Project files
+| File | Purpose |
+|---|---|
+| [Analysis notebook](Automobile_Hierarchical_Clustering.ipynb) | End-to-end analysis, code, charts, interpretation, and limitations |
+| [Dataset](mtcars.csv) | 32 automobile observations and 11 numeric variables |
+| [Dependencies](requirements.txt) | Python packages needed to run the analysis |
 
-   ```bash
-   python -m pip install -r requirements.txt
-   ```
+## Methodology
+1. **Inspect the data** — review dimensions, data types, missing values, duplicates, and descriptive statistics.
+2. **Prepare features** — exclude the vehicle identifier and standardize the 11 numeric variables.
+3. **Build hierarchical models** — compare Average and Ward linkage using Euclidean distance.
+4. **Evaluate cluster counts** — examine silhouette scores and cluster sizes for candidate solutions from 2 to 7 groups.
+5. **Interpret segments** — summarize original feature values by cluster and inspect vehicle membership.
+6. **Visualize** — use dendrograms, a standardized cluster-profile heatmap, and a two-component PCA projection.
 
-4. Launch Jupyter and run all notebook cells:
+## Key findings in the worked three-cluster solution
+- **Cluster 1 (15 models):** higher average fuel economy and lower average weight and horsepower than the other groups.
+- **Cluster 2 (12 models):** heavier vehicles; all have eight cylinders in this sample, with lower average fuel economy.
+- **Cluster 3 (5 models):** relatively high average horsepower and lower average weight than Cluster 2.
 
-   ```bash
-   jupyter notebook
-   ```
+These are descriptive patterns in a small historical sample. They do not establish causation or represent validated current-market customer segments.
 
-## Important interpretation notes
-The worked example selects Ward linkage with three clusters as a practical balance of separation, cluster size, and interpretability. This is an exploratory demonstration using a small historical dataset; it should not be generalized to today's automobile market. Cluster labels are descriptive, not causal or externally validated.
+## Tools and skills demonstrated
+Python, pandas, NumPy, Matplotlib, Seaborn, SciPy, scikit-learn, data quality assessment, feature scaling, hierarchical clustering, model evaluation, cluster profiling, PCA, data visualization, and analytical communication.
 
-## Tools
-Python, pandas, NumPy, Matplotlib, Seaborn, SciPy, scikit-learn, and Jupyter Notebook.
+## Run it locally
+From this directory:
+
+```bash
+python -m pip install -r requirements.txt
+jupyter notebook Automobile_Hierarchical_Clustering.ipynb
+```
+
+Run the notebook cells from top to bottom. The notebook reads `mtcars.csv` from the same directory.
+
+## Dataset and attribution
+The included CSV is the classic `mtcars` automobile dataset, sourced from the Plotly datasets repository: [plotly/datasets — mtcars.csv](https://github.com/plotly/datasets/blob/master/mtcars.csv). The data represents a small historical sample and is commonly used for statistical and machine-learning demonstrations.
+
+## Limitations and responsible interpretation
+- The sample contains only 32 historical automobile models.
+- Standardizing all variables gives each feature unit variance; it does not prove equal business importance.
+- The `vs` and `am` fields are binary-coded and their use with Euclidean distance is a modeling choice.
+- Cluster-count selection is sensitive to the features, distance measure, linkage, and intended use.
+- There is no external ground-truth segmentation or independent validation set.
+
+**Next steps:** test alternative feature sets and distance choices, assess cluster stability, and use a larger contemporary dataset with price, sales, customer, and geographic variables before making commercial decisions.
