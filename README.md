@@ -11,8 +11,8 @@ An unsupervised learning project that groups 32 automobile models using 11 vehic
 - [View the Jupyter notebook](projects/automobile-hierarchical-clustering/Automobile_Hierarchical_Clustering.ipynb)
 - [View the dataset](projects/automobile-hierarchical-clustering/mtcars.csv)
 
-### Other notebooks
-- [A/B Testing](A_B_testing.ipynb)
+### Practice notebooks
+- [Simulated email subject-line test](A_B_testing.ipynb) — a coding demo with randomly generated outcomes; the rates are not measured campaign results.
 - [Linear Regression](linear_regression.ipynb)
 
 ## Tools used across projects
